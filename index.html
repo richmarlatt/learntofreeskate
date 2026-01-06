@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn to Freeskate | 100 People Challenge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-orange: #FF6B35;
+            --hot-pink: #FF1493;
+            --electric-blue: #00D4FF;
+            --dark-asphalt: #0D0D0D;
+            --concrete: #1A1A1A;
+            --steel: #2D2D2D;
+            --cream: #F5F5DC;
+            --accent-gold: #FFB347;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--dark-asphalt);
+            color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Noise texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                var(--dark-asphalt);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to top, var(--dark-asphalt), transparent);
+        }
+
+        .badge {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            background: var(--primary-orange);
+            color: var(--dark-asphalt);
+            padding: 0.5rem 1.5rem;
+            border-radius: 2px;
+            margin-bottom: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 53, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(255, 107, 53, 0.8); }
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 15vw, 12rem);
+            line-height: 0.85;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--electric-blue) 50%, var(--primary-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.1rem;
+            color: rgba(245, 245, 220, 0.7);
+            max-width: 500px;
+            margin-bottom: 3rem;
+        }
+
+        .cta-button {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: transparent;
+            color: var(--primary-orange);
+            border: 2px solid var(--primary-orange);
+            padding: 1rem 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-orange);
+            color: var(--dark-asphalt);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Section styling */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 8rem;
+            line-height: 1;
+            color: var(--steel);
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            opacity: 0.5;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--primary-orange);
+        }
+
+        /* What are freeskates */
+        .intro-section {
+            background: var(--concrete);
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .intro-card {
+            background: var(--steel);
+            padding: 2rem;
+            border-left: 3px solid var(--electric-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .intro-card:hover {
+            transform: translateX(10px);
+        }
+
+        .intro-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--electric-blue);
+        }
+
+        .intro-card p {
+            color: rgba(245, 245, 220, 0.8);
+            font-size: 0.95rem;
+        }
+
+        /* Gear section */
+        .gear-section {
+            background: 
+                linear-gradient(135deg, rgba(255, 20, 147, 0.05) 0%, transparent 50%),
+                var(--dark-asphalt);
+        }
+
+        .gear-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .gear-category {
+            position: relative;
+        }
+
+        .gear-category h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .essential-badge {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            background: var(--hot-pink);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .gear-list {
+            list-style: none;
+        }
+
+        .gear-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--steel);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .gear-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--primary-orange);
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--dark-asphalt);
+            font-weight: bold;
+        }
+
+        /* Steps section */
+        .steps-section {
+            background: var(--concrete);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .steps-section::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--primary-orange), transparent);
+            transform: translateX(-50%);
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 6rem;
+            position: relative;
+        }
+
+        .step:nth-child(even) {
+            direction: rtl;
+        }
+
+        .step:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: var(--dark-asphalt);
+            border: 3px solid var(--primary-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary-orange);
+            z-index: 10;
+        }
+
+        .step-content {
+            padding: 2rem;
+        }
+
+        .step-content h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--cream);
+        }
+
+        .step-content p {
+            color: rgba(245, 245, 220, 0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .step-tips {
+            background: var(--steel);
+            padding: 1.5rem;
+            border-left: 3px solid var(--accent-gold);
+        }
+
+        .step-tips h4 {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-placeholder {
+            background: var(--steel);
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono', monospace;
+            color: rgba(245, 245, 220, 0.3);
+            font-size: 0.8rem;
+        }
+
+        /* Common mistakes */
+        .mistakes-section {
+            background: 
+                radial-gradient(ellipse at 100% 0%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                var(--dark-asphalt);
+        }
+
+        .mistakes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .mistake-card {
+            background: var(--concrete);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mistake-card::before {
+            content: '✗';
+            position: absolute;
+            top: -20px;
+            right: -10px;
+            font-size: 8rem;
+            color: rgba(255, 107, 53, 0.1);
+            font-weight: bold;
+        }
+
+        .mistake-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .mistake-card .wrong {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .mistake-card .wrong::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+        }
+
+        .mistake-card .right {
+            color: var(--primary-orange);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .mistake-card .right::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Timeline section */
+        .timeline-section {
+            background: var(--concrete);
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-orange), var(--electric-blue), var(--hot-pink));
+            transform: translateY(-50%);
+        }
+
+        .timeline-item {
+            text-align: center;
+            position: relative;
+            flex: 1;
+        }
+
+        .timeline-marker {
+            width: 80px;
+            height: 80px;
+            background: var(--dark-asphalt);
+            border: 4px solid var(--primary-orange);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .timeline-marker span {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+        }
+
+        .timeline-marker small {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            color: rgba(245, 245, 220, 0.6);
+        }
+
+        .timeline-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: rgba(245, 245, 220, 0.8);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: 
+                linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, transparent 30%),
+                linear-gradient(225deg, rgba(0, 212, 255, 0.1) 0%, transparent 30%),
+                var(--dark-asphalt);
+            text-align: center;
+            padding: 8rem 2rem;
+        }
+
+        .cta-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: rgba(245, 245, 220, 0.8);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--cream);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--steel);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            border-color: var(--primary-orange);
+            color: var(--primary-orange);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--concrete);
+            padding: 2rem;
+            text-align: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(245, 245, 220, 0.5);
+        }
+
+        footer a {
+            color: var(--primary-orange);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .step {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .step:nth-child(even) {
+                direction: ltr;
+            }
+
+            .steps-section::before {
+                left: 2rem;
+            }
+
+            .step-number {
+                left: 2rem;
+                transform: none;
+            }
+
+            .section-number {
+                font-size: 4rem;
+            }
+
+            .timeline {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .timeline::before {
+                top: 0;
+                bottom: 0;
+                left: 40px;
+                right: auto;
+                width: 4px;
+                height: auto;
+            }
+
+            .timeline-item {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                text-align: left;
+            }
+
+            .timeline-marker {
+                margin: 0;
+                flex-shrink: 0;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="badge">100 People Challenge</div>
+        <h1>Learn to<br>Freeskate</h1>
+        <p class="hero-subtitle">Your complete guide to riding JMKRide freeskates. From first steps to rolling with confidence.</p>
+        <a href="#start" class="cta-button">Start Learning →</a>
+    </section>
+
+    <!-- What are freeskates -->
+    <section class="intro-section" id="start">
+        <div class="container">
+            <span class="section-number">01</span>
+            <div class="section-header">
+                <p class="section-subtitle">The Basics</p>
+                <h2 class="section-title">What Are Freeskates?</h2>
+            </div>
+            <div class="intro-grid">
+                <div class="intro-card">
+                    <h3>Two Separate Skates</h3>
+                    <p>Freeskates are two independent platforms with inline wheels. No bindings, no boots—you're simply standing on grip tape and controlling them with leg and ankle rotation.</p>
+                </div>
+                <div class="intro-card">
+                    <h3>Unique Ride Feel</h3>
+                    <p>Think surfing meets snowboarding meets rollerblading. The signature "flow" comes from JMKRide's rounded Proformance wheels that let you carve and pump smoothly.</p>
+                </div>
+                <div class="intro-card">
+                    <h3>Portable & Free</h3>
+                    <p>Throw them in a backpack. No special shoes required. Step on, ride, step off. The freedom to skate anywhere smooth asphalt or concrete takes you.</p>
+                </div>
+                <div class="intro-card">
+                    <h3>Learnable Timeline</h3>
+                    <p>With proper instruction: ~5 hours to ride downhill and flat ground. ~15 hours to conquer slight uphills. That's about 1-2 weeks of consistent practice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gear Section -->
+    <section class="gear-section">
+        <div class="container">
+            <span class="section-number">02</span>
+            <div class="section-header">
+                <p class="section-subtitle">Before You Roll</p>
+                <h2 class="section-title">Gear Up</h2>
+            </div>
+            <div class="gear-grid">
+                <div class="gear-category">
+                    <h3>The Skates <span class="essential-badge">Essential</span></h3>
+                    <ul class="gear-list">
+                        <li>
+                            <span class="gear-icon">1</span>
+                            <div>
+                                <strong>JMKRIDE Complete Set</strong><br>
+                                <span style="color: rgba(245,245,220,0.6);">Includes wheels, bearings, trucks, decks, and grip tape. Aircraft-grade aluminum decks, high-strength steel trucks, ABEC-7 bearings.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="gear-icon">2</span>
+                            <div>
+                                <strong>Assembly Required</strong><br>
+                                <span style="color: rgba(245,245,220,0.6);">Ships partially assembled. Attach decks with included tool, apply grip tape. Watch JMKRIDE's assembly tutorial.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="gear-category">
+                    <h3>Protection <span class="essential-badge">Essential</span></h3>
+                    <ul class="gear-list">
+                        <li>
+                            <span class="gear-icon">✓</span>
+                            <div>
+                                <strong>Helmet</strong><br>
+                                <span style="color: rgba(245,245,220,0.6);">Non-negotiable. Full contact around your head, no gaps between padding and skull.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="gear-icon">✓</span>
+                            <div>
+                                <strong>Wrist Guards</strong><br>
+                                <span style="color: rgba(245,245,220,0.6);">The #1 recommended protection by JMKRIDE. Protects against the most common fall injury.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="gear-icon">+</span>
+                            <div>
+                                <strong>Knee & Elbow Pads</strong><br>
+                                <span style="color: rgba(245,245,220,0.6);">Highly recommended for beginners. JMKRIDE sells a 3-piece protection pack.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Find Your Spot -->
+    <section class="steps-section">
+        <div class="container">
+            <span class="section-number">03</span>
+            <div class="section-header">
+                <p class="section-subtitle">Location Matters</p>
+                <h2 class="section-title">Find Your Spot</h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                <div class="intro-card">
+                    <h3>✓ Smooth Surface</h3>
+                    <p>Concrete or asphalt. Avoid cracks, gravel, and debris. Parking garages on weekends are ideal.</p>
+                </div>
+                <div class="intro-card">
+                    <h3>✓ Slight Downhill</h3>
+                    <p>You won't be able to propel yourself on Day 1. A gentle slope lets gravity do the work while you learn balance.</p>
+                </div>
+                <div class="intro-card">
+                    <h3>✓ Something to Hold</h3>
+                    <p>A fence, railing, wall, or a patient friend. You'll need support for your first attempts.</p>
+                </div>
+                <div class="intro-card">
+                    <h3>✓ Wide Open Space</h3>
+                    <p>No traffic, pedestrians, or obstacles. You need room to wobble, fall, and try again.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step by Step -->
+    <section style="background: var(--dark-asphalt); padding: 6rem 2rem;">
+        <div class="container">
+            <span class="section-number">04</span>
+            <div class="section-header">
+                <p class="section-subtitle">The Method</p>
+                <h2 class="section-title">Step-by-Step Guide</h2>
+            </div>
+
+            <!-- Step 1 -->
+            <div style="background: var(--concrete); padding: 3rem; margin-bottom: 2rem; border-left: 4px solid var(--primary-orange);">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <span style="font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--primary-orange);">01</span>
+                    <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2rem;">Find Your Stance</h3>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: rgba(245,245,220,0.8);">Just like skateboarding and snowboarding, you're either "regular" (left foot forward) or "goofy" (right foot forward). Neither is better—it's about what feels natural to you.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div style="background: var(--steel); padding: 1.5rem;">
+                        <strong style="color: var(--electric-blue);">The Push Test</strong><br>
+                        <span style="font-size: 0.9rem; color: rgba(245,245,220,0.7);">Have someone gently push you from behind. The foot you step forward with to catch yourself is your front foot.</span>
+                    </div>
+                    <div style="background: var(--steel); padding: 1.5rem;">
+                        <strong style="color: var(--electric-blue);">The Slide Test</strong><br>
+                        <span style="font-size: 0.9rem; color: rgba(245,245,220,0.7);">Imagine sliding on ice. The foot you'd naturally put forward is likely your lead foot.</span>
+                    </div>
+                    <div style="background: var(--steel); padding: 1.5rem;">
+                        <strong style="color: var(--electric-blue);">The Kick Test</strong><br>
+                        <span style="font-size: 0.9rem; color: rgba(245,245,220,0.7);">Which foot do you kick a ball with? That's usually your back foot on freeskates.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div style="background: var(--concrete); padding: 3rem; margin-bottom: 2rem; border-left: 4px solid var(--electric-blue);">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <span style="font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--electric-blue);">02</span>
+                    <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2rem;">The Stance</h3>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: rgba(245,245,220,0.8);">Your body position is everything. Get this right and learning becomes dramatically easier.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <h4 style="color: var(--primary-orange); font-family: 'Space Mono', monospace; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 1rem;">BODY POSITION</h4>
+                        <ul style="list-style: none; line-height: 2;">
+                            <li>→ Stand <strong>sideways</strong> to your direction of travel</li>
+                            <li>→ Feet roughly <strong>shoulder-width apart</strong></li>
+                            <li>→ <strong>Knees bent</strong> — this is critical!</li>
+                            <li>→ Arms out for <strong>balance</strong></li>
+                            <li>→ <strong>Low center of gravity</strong></li>
+                        </ul>
+                    </div>
+                    <div style="background: var(--steel); padding: 1.5rem; border-left: 3px solid var(--accent-gold);">
+                        <h4 style="color: var(--accent-gold); font-family: 'Space Mono', monospace; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 0.5rem;">⚠ KEY POINT</h4>
+                        <p style="font-size: 0.95rem; color: rgba(245,245,220,0.9);">Keeping your knees bent and legs spread in a stable stance makes it very likely you can simply <strong>step off</strong> the skates if you lose balance. The skates aren't attached to you!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div style="background: var(--concrete); padding: 3rem; margin-bottom: 2rem; border-left: 4px solid var(--hot-pink);">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <span style="font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--hot-pink);">03</span>
+                    <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2rem;">Getting On (With Support)</h3>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: rgba(245,245,220,0.8);">Start with support. A fence, railing, or friend's hands make the first attempts safe and confidence-building.</p>
+                
+                <ol style="line-height: 2.2; padding-left: 1.5rem; color: rgba(245,245,220,0.9);">
+                    <li>Place both skates on the ground, roughly shoulder-width apart</li>
+                    <li>Hold onto your support with both hands</li>
+                    <li>Step onto your <strong>front skate first</strong> with your front foot</li>
+                    <li>Step onto your <strong>back skate</strong> with your back foot</li>
+                    <li>Center your weight over the balls of your feet</li>
+                    <li>Find your balance while holding the support</li>
+                    <li>Practice shifting weight slightly left and right</li>
+                </ol>
+            </div>
+
+            <!-- Step 4 -->
+            <div style="background: var(--concrete); padding: 3rem; margin-bottom: 2rem; border-left: 4px solid var(--primary-orange);">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <span style="font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--primary-orange);">04</span>
+                    <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2rem;">Rolling Downhill</h3>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: rgba(245,245,220,0.8);">Use gravity to learn balance. A gentle slope does the propulsion so you can focus entirely on staying stable.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <h4 style="color: var(--primary-orange); font-family: 'Space Mono', monospace; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 1rem;">THE PROCESS</h4>
+                        <ol style="line-height: 2; padding-left: 1.5rem; color: rgba(245,245,220,0.8);">
+                            <li>Start at the top of a gentle slope</li>
+                            <li>Get on the skates with support</li>
+                            <li>Release support and roll</li>
+                            <li>Keep knees bent, arms out</li>
+                            <li>Focus on staying balanced</li>
+                            <li>Step off when you need to stop</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--electric-blue); font-family: 'Space Mono', monospace; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 1rem;">BAILING SAFELY</h4>
+                        <p style="color: rgba(245,245,220,0.8); font-size: 0.95rem;">If you start to lose balance, <strong>simply step off</strong>. The skates are small and you can easily jump clear. Don't try to save a bad run—step off, reset, try again.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div style="background: var(--concrete); padding: 3rem; margin-bottom: 2rem; border-left: 4px solid var(--electric-blue);">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <span style="font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--electric-blue);">05</span>
+                    <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2rem;">Turning</h3>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: rgba(245,245,220,0.8);">Turning is controlled by pointing your toes. It's intuitive once you feel it.</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div style="background: var(--steel); padding: 1.5rem; text-align: center;">
+                        <h4 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; margin-bottom: 0.5rem;">Turn Left</h4>
+                        <p style="color: rgba(245,245,220,0.7);">Point toes to the <strong>left</strong> (outward/heelside)</p>
+                    </div>
+                    <div style="background: var(--steel); padding: 1.5rem; text-align: center;">
+                        <h4 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; margin-bottom: 0.5rem;">Turn Right</h4>
+                        <p style="color: rgba(245,245,220,0.7);">Point toes to the <strong>right</strong> (inward/toeside)</p>
+                    </div>
+                </div>
+                <p style="margin-top: 1.5rem; color: rgba(245,245,220,0.6); font-size: 0.9rem;">Start with gentle, wide turns. Sharper turns come with practice and confidence.</p>
+            </div>
+
+            <!-- Step 6 -->
+            <div style="background: var(--concrete); padding: 3rem; border-left: 4px solid var(--hot-pink);">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <span style="font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--hot-pink);">06</span>
+                    <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2rem;">Pumping (Self-Propulsion)</h3>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: rgba(245,245,220,0.8);">Once you can ride downhill and on flat, it's time to generate your own speed. This is where freeskating gets fun.</p>
+                
+                <div style="background: var(--steel); padding: 2rem; margin-bottom: 1.5rem;">
+                    <h4 style="color: var(--primary-orange); font-family: 'Space Mono', monospace; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 1rem;">THE PUMPING MOTION</h4>
+                    <p style="color: rgba(245,245,220,0.9); margin-bottom: 1rem;">Pumping is a back-and-forth motion with your feet that creates forward momentum. Think of it like a snake slithering—your feet trace a sinusoidal path.</p>
+                    <ol style="line-height: 2; padding-left: 1.5rem; color: rgba(245,245,220,0.8);">
+                        <li>Start with knees bent</li>
+                        <li>Rotate your legs and hips to make your skates carve left and right</li>
+                        <li>Swing your arms and hips as a counterweight</li>
+                        <li>Push against the skates at the edge of each carve</li>
+                        <li>Both feet pump together or in alternating phase</li>
+                    </ol>
+                </div>
+                
+                <div style="background: var(--dark-asphalt); padding: 1.5rem; border-left: 3px solid var(--accent-gold);">
+                    <h4 style="color: var(--accent-gold); font-family: 'Space Mono', monospace; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 0.5rem;">PRO TIP</h4>
+                    <p style="font-size: 0.95rem; color: rgba(245,245,220,0.9);">"Double pumping" is when both feet move in phase together. This typically generates more power. Experiment with both styles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Common Mistakes -->
+    <section class="mistakes-section">
+        <div class="container">
+            <span class="section-number">05</span>
+            <div class="section-header">
+                <p class="section-subtitle">What to Avoid</p>
+                <h2 class="section-title">Common Mistakes</h2>
+            </div>
+            <div class="mistakes-grid">
+                <div class="mistake-card">
+                    <h3>Straight Legs</h3>
+                    <p class="wrong">Standing with locked, straight knees</p>
+                    <p class="right">Keep knees bent at all times for stability and quick reactions</p>
+                </div>
+                <div class="mistake-card">
+                    <h3>Too Narrow Stance</h3>
+                    <p class="wrong">Feet close together, skates almost touching</p>
+                    <p class="right">Keep feet shoulder-width apart or slightly wider for balance</p>
+                </div>
+                <div class="mistake-card">
+                    <h3>Starting on Flat Ground</h3>
+                    <p class="wrong">Trying to learn pumping before you can balance</p>
+                    <p class="right">Use a gentle slope first—let gravity do the work while you learn balance</p>
+                </div>
+                <div class="mistake-card">
+                    <h3>Fighting the Fall</h3>
+                    <p class="wrong">Trying to save every wobble and lose control</p>
+                    <p class="right">Step off early and reset. The skates aren't attached—use that to your advantage</p>
+                </div>
+                <div class="mistake-card">
+                    <h3>Looking Down</h3>
+                    <p class="wrong">Staring at your feet while riding</p>
+                    <p class="right">Look where you're going. Your body follows your eyes.</p>
+                </div>
+                <div class="mistake-card">
+                    <h3>Giving Up Too Early</h3>
+                    <p class="wrong">Expecting to ride perfectly in the first hour</p>
+                    <p class="right">Give it 5-15 hours. Nobody rides away on their first try.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline-section">
+        <div class="container">
+            <span class="section-number">06</span>
+            <div class="section-header">
+                <p class="section-subtitle">What to Expect</p>
+                <h2 class="section-title">Your Learning Timeline</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span>1-2</span>
+                        <small>HRS</small>
+                    </div>
+                    <p class="timeline-label">Standing & Basic Balance</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker" style="border-color: var(--electric-blue);">
+                        <span>3-5</span>
+                        <small>HRS</small>
+                    </div>
+                    <p class="timeline-label">Rolling Downhill & Flat</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker" style="border-color: var(--hot-pink);">
+                        <span>10-15</span>
+                        <small>HRS</small>
+                    </div>
+                    <p class="timeline-label">Pumping & Slight Uphills</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker" style="border-color: var(--cream);">
+                        <span>20+</span>
+                        <small>HRS</small>
+                    </div>
+                    <p class="timeline-label">Confidence & Basic Tricks</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 3rem; color: rgba(245,245,220,0.6); font-size: 0.9rem;">This is faster than learning to juggle, unicycle, or ollie on a skateboard!</p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Ready to Roll?</h2>
+        <p>Join the 100 People Challenge. Follow along as complete beginners learn to freeskate from scratch.</p>
+        <a href="https://usa.jmkride.com" class="cta-button" target="_blank">Get Your Freeskates →</a>
+        <div class="social-links">
+            <a href="https://www.jmkride.com/learn" class="social-link" target="_blank">JMKRIDE Tutorials</a>
+            <a href="https://www.facebook.com/groups/USAFreeskaters" class="social-link" target="_blank">USA Freeskaters</a>
+            <a href="https://www.youtube.com/c/JMKRIDERollWithUs" class="social-link" target="_blank">YouTube Channel</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Part of the "100 People Learn to Freeskate" series.<br>
+        Skates by <a href="https://jmkride.com" target="_blank">JMKRIDE</a> | Roll With Us</p>
+    </footer>
+</body>
+</html>
