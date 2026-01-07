@@ -67,6 +67,11 @@
                 var(--dark-asphalt);
         }
 
+        .hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
         .hero::after {
             content: '';
             position: absolute;
@@ -75,6 +80,8 @@
             right: 0;
             height: 200px;
             background: linear-gradient(to top, var(--dark-asphalt), transparent);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .badge {
@@ -136,6 +143,7 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
         }
+
 
         /* Section styling */
         section {
@@ -627,8 +635,14 @@
         <div class="badge">100 People Challenge</div>
         <h1>Learn to<br>Freeskate</h1>
         <p class="hero-subtitle">Your complete guide to riding JMKRide Freeskates. From first steps to rolling with confidence.</p>
-        <a href="#start" class="cta-button">Start Learning →</a>
+        <a href="#start" class="cta-button">Start Learning →</a>      
+        <div class="social-links">
+            <a href="https://www.instagram.com/freeskatekid/" class="social-link" target="_blank">@Freeskatekid</a>
+            <a href="https://www.youtube.com/@FreeSkateKid" class="social-link" target="_blank">YouTube Channel</a>
+        </div>
     </section>
+
+
 
     <!-- What are freeskates -->
     <section class="intro-section" id="start">
@@ -997,7 +1011,7 @@
         </div>
     </section>
 
-    
+
     <!-- Footer -->
     <footer>
         <p>Part of the "100 People Learn to Freeskate" series.<br>
